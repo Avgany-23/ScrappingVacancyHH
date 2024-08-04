@@ -20,13 +20,17 @@ def decorator_try_open_main_page(count: int = 10) -> Callable[[Callable], Callab
             counter = 1
             # Попытка вызвать функцию (func) count раз
             while counter <= count:
-                try:
+                
+                try:    
                     result_func = func(*args, **kwargs)
                     break
                 except:
                     counter += 1
-            if counter - 1 == count:    # Если ошибка произошла count раз, то вызов исключения
+                    
+            # Если ошибка произошла count раз, то вызов исключения  
+            if counter - 1 == count:
                 raise Service('Ошибка с загрузкой главной страницы со списком вакасий')
+
             return result_func
         return wrapper
     return base_decorator
