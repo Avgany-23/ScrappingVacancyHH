@@ -7,7 +7,7 @@ import os
 if __name__ == '__main__':
     '''
     Параметр language_prog - можно указать любой язык поиска. 
-    Для параметра cities доступны:  '' - все регионы, Moscow - Москва, St.Petersburg - СПБ, 
+    Для параметра regions доступны:  '' - все регионы, Moscow - Москва, St.Petersburg - СПБ, 
                                     Ekaterinburg - Екатеренбург, Novosibirsk - Новосибирск
     '''
 
