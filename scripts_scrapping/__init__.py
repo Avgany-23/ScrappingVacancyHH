@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import Callable, Any
+from typing import Callable, Any, Tuple
 from functools import wraps
 
 
@@ -8,10 +8,10 @@ def time_decorator(func: Callable) -> Callable[[], Any]:
     Принимает func - ссылка на функцию
     Возвращает функцию wrapper"""
 
-    @wraps(func)    # Для сохранение атрибутов функции func
-    def wrapper(*args: Any, **kwargs: Any) -> func:
+    @wraps(func)  # Для сохранения атрибутов функции func
+    def wrapper(*args: Any, **kwargs: Any) -> tuple[Any, str]:
         """Функция обертка. Возвращает значение функции func
-        Принимает *args - позиционные аргументов, **kwargs - именнованные"""
+        Принимает *args - позиционные аргументов, **kwargs - именованные"""
         print(f'Начало работы функции.\n'
               f"🕐Текущее время и дата: {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n")
         start = datetime.now()
@@ -29,10 +29,12 @@ def time_decorator(func: Callable) -> Callable[[], Any]:
         name_seconds = ('секунда', 'секунды', 'секунд')
 
         # Вывод информации о количестве работы функции
-        print(f'Время обработки составило: {choose_plural(hours, name_hours)} '
-                                         f'{choose_plural(minutes, name_minutes)} и '
-                                         f'{choose_plural(seconds, name_seconds)}\n')
-        return result_func
+        result_time = (f'Время обработки составило: {choose_plural(hours, name_hours)} '
+                       f'{choose_plural(minutes, name_minutes)} и '
+                       f'{choose_plural(seconds, name_seconds)}\n')
+        print(result_time)
+        return result_func, result_time
+
     return wrapper
 
 
@@ -46,6 +48,6 @@ def choose_plural(amount: int, declensions: tuple[str]) -> str:
         amount % 10 == 1: 0,
         amount % 10 in [2, 3, 4]: 1,
         amount % 10 in [0, 5, 6, 7, 8, 9]: 2,
-        amount % 100 in range(11, 21) : 2
+        amount % 100 in range(11, 21): 2
     }
     return f'{amount} {declensions[selector[True]]}'

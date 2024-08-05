@@ -1,85 +1,77 @@
 {
-    "Общее количество просмотренных вакансий": 33,
-    "Количество вакансий в json файле": 10,
-    "Параметры поиска": {
-        "Язык программирования": "python",
-        "Ключевые слова": [
-            "Django",
-            "Flask"
-        ],
-        "Регионы": [
-            "AllRegions"
-        ]
-    },
+    "Указанное количество на получение вакансий": 10,
+    "Итоговое количество просмотренных вакансий": 10,
+    "Итоговое количество вакансий в json файле": 10,
+    "Время поиска вакансий": "Время обработки составило: 0 часов 0 минут и 24 секунды",
     "Вакансии": {
-        "https://spb.hh.ru/vacancy/103482417?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Python-разработчик",
-            "Зарплата": "до 470 000 ₽ на руки",
-            "Компания": "Точка",
-            "Требуемый опыт работы": "3–6 лет",
+        "https://spb.hh.ru/vacancy/104548603?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Middle Python backend developer (FastAPI)",
+            "Зарплата": "до 150 000 ₽ на руки",
+            "Компания": "ООО РА Дельта",
+            "Требуемый опыт работы": "1–3 года",
             "Регион": "Москва"
         },
-        "https://spb.hh.ru/vacancy/102874458?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Python developer (Middle/Senior)",
-            "Зарплата": "от 250 000 до 400 000 ₽ до вычета налогов",
-            "Компания": "Digital Security",
-            "Требуемый опыт работы": "3–6 лет",
+        "https://spb.hh.ru/vacancy/104345588?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Junior Python Backend Developer",
+            "Зарплата": "до 80 000 ₽ на руки",
+            "Компания": "АпТрейдер (UpTrader)",
+            "Требуемый опыт работы": "1–3 года",
             "Регион": "Санкт-Петербург"
         },
-        "https://spb.hh.ru/vacancy/104251163?query=python&hhtmFrom=vacancy_search_list": {
+        "https://spb.hh.ru/vacancy/104933476?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
             "Название вакансии": "Программист Python",
-            "Зарплата": "Зарплата не указана",
-            "Компания": "вДоступе",
+            "Зарплата": "от 80 000 до 120 000 ₽ на руки",
+            "Компания": "Блюменкрафт",
             "Требуемый опыт работы": "1–3 года",
             "Регион": "Москва"
         },
-        "https://spb.hh.ru/vacancy/103666745?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Python Developer",
-            "Зарплата": "Зарплата не указана",
-            "Компания": "ООО Тис-Центр",
+        "https://spb.hh.ru/vacancy/103921866?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Backend разработчик",
+            "Зарплата": "от 120 000 ₽ на руки",
+            "Компания": "ФГАНУ Центр информационных технологий и систем органов исполнительной власти",
             "Требуемый опыт работы": "1–3 года",
-            "Регион": "Нижний Новгород"
-        },
-        "https://spb.hh.ru/vacancy/104376421?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Python-разработчик",
-            "Зарплата": "Зарплата не указана",
-            "Компания": "Cedro Agency",
-            "Требуемый опыт работы": "3–6 лет",
             "Регион": "Москва"
         },
-        "https://spb.hh.ru/vacancy/104239958?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Разработчик Python",
-            "Зарплата": "от 450 000 до 590 000 ₸ на руки",
-            "Компания": "ТОО IDIA Market",
+        "https://spb.hh.ru/vacancy/104811513?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Middle backend разработчик (Django)",
+            "Зарплата": "от 120 000 до 150 000 ₽ на руки",
+            "Компания": "Stik",
             "Требуемый опыт работы": "1–3 года",
-            "Регион": "Алматы"
+            "Регион": "Санкт-Петербург"
         },
-        "https://spb.hh.ru/vacancy/103648144?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Python Developer",
-            "Зарплата": "Зарплата не указана",
-            "Компания": "ООО УайтСнейк",
+        "https://spb.hh.ru/vacancy/96610425?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Middle Python-разработчик",
+            "Зарплата": "от 140 000 до 250 000 ₽ на руки",
+            "Компания": "AERODISK",
             "Требуемый опыт работы": "1–3 года",
-            "Регион": "Минск"
-        },
-        "https://spb.hh.ru/vacancy/101662924?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Преподаватель Python",
-            "Зарплата": "до 100 000 ₽ до вычета налогов",
-            "Компания": "ЧУ ДО Московская школа программистов",
-            "Требуемый опыт работы": "не требуется",
             "Регион": "Москва"
         },
-        "https://spb.hh.ru/vacancy/104635282?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Программист Python",
-            "Зарплата": "Зарплата не указана",
-            "Компания": "ООО МАГ Девелопмент",
-            "Требуемый опыт работы": "3–6 лет",
+        "https://spb.hh.ru/vacancy/105245855?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Full-stack Разработчик (Django, React)",
+            "Зарплата": "от 70 000 ₽ на руки",
+            "Компания": "ООО Рамтроника",
+            "Требуемый опыт работы": "1–3 года",
             "Регион": "Москва"
         },
-        "https://spb.hh.ru/vacancy/96425920?query=python&hhtmFrom=vacancy_search_list": {
-            "Название вакансии": "Бэкенд разработчик (Python)",
-            "Зарплата": "Зарплата не указана",
-            "Компания": "Вкусно — и точка",
-            "Требуемый опыт работы": "3–6 лет",
+        "https://spb.hh.ru/vacancy/104886378?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Python разработчик",
+            "Зарплата": "до 150 000 ₽ на руки",
+            "Компания": "ООО Аксета",
+            "Требуемый опыт работы": "1–3 года",
+            "Регион": "Москва"
+        },
+        "https://spb.hh.ru/vacancy/104468775?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Middle Backend разработчик (Python)",
+            "Зарплата": "от 180 000 до 220 000 ₽ на руки",
+            "Компания": "MillionAgents",
+            "Требуемый опыт работы": "1–3 года",
+            "Регион": "Москва"
+        },
+        "https://spb.hh.ru/vacancy/105093148?query=Name%3A%28python+or+django+or+drf+or+backend+or+fastapi+or+flask%29+and+DESCRIPTION%3A%28django+or+drf+or+fastapi+or+flask%29&hhtmFrom=vacancy_search_list": {
+            "Название вакансии": "Разработчик бекэнда",
+            "Зарплата": "от 80 000 ₽ на руки",
+            "Компания": "KONERGY",
+            "Требуемый опыт работы": "1–3 года",
             "Регион": "Москва"
         }
     }
