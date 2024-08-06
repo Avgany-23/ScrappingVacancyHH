@@ -48,7 +48,7 @@ class ScrappingHH:
         self.path = ChromeDriverManager().install()                         # Установка и получение пути движка
         self.browser_service = Service(executable_path=self.path)           # Загрузка движка в браузер по пути path
         self.options = ChromeOptions()                                      # Экземпляр класса настройки движка
-        self.options.add_experimental_option("detach", True)    # Не закрывать браузер во время работы
+        self.options.add_experimental_option("detach", True)                # Не закрывать браузер во время работы
         if not show_search:
             self.options.add_argument('--headless')                         # Отображение браузера
         self.main_url = main_url
