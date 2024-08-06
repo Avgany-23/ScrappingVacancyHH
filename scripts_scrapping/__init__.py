@@ -8,7 +8,7 @@ def time_decorator(func: Callable) -> Callable[[], Any]:
     Принимает func - ссылка на функцию
     Возвращает функцию wrapper"""
 
-    @wraps(func)  # Для сохранения атрибутов функции func
+    @wraps(func) 
     def wrapper(*args: Any, **kwargs: Any) -> tuple[Any, str]:
         """Функция обертка. Возвращает значение функции func
         Принимает *args - позиционные аргументов, **kwargs - именованные"""
@@ -18,7 +18,6 @@ def time_decorator(func: Callable) -> Callable[[], Any]:
         result_func = func(*args, **kwargs)
         end = datetime.now() - start
 
-        # Подсчет количества часов, минут и секунд
         hours = end.seconds // 60 // 60
         minutes = end.seconds // 60 - hours * 60
         seconds = end.seconds - hours * 60 ** 2 - minutes * 60
@@ -28,7 +27,6 @@ def time_decorator(func: Callable) -> Callable[[], Any]:
         name_minutes = ('минута', 'минуты', 'минут')
         name_seconds = ('секунда', 'секунды', 'секунд')
 
-        # Вывод информации о количестве работы функции
         result_time = (f'Время обработки составило: {choose_plural(hours, name_hours)} '
                        f'{choose_plural(minutes, name_minutes)} и '
                        f'{choose_plural(seconds, name_seconds)}\n')
