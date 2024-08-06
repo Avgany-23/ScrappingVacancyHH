@@ -5,12 +5,6 @@ import os
 
 
 if __name__ == '__main__':
-    '''
-    Параметр language_prog - можно указать любой язык поиска. 
-    Для параметра regions доступны:  '' - все регионы, Moscow - Москва, St.Petersburg - СПБ, 
-                                    Ekaterinburg - Екатеренбург, Novosibirsk - Новосибирск
-    '''
-
     # ------ Параметры для поиска - ЗАПОЛНЯТЬ ЗДЕСЬ ------
     search = ['python', 'django', 'drf', 'backend', 'fastapi', 'flask']  # Имя поиска (обязательно ввести хотя бы 1)
     descriptions = ['django', 'drf', 'fastapi', 'flask']                 # Ключевые слова (необязательно)
@@ -24,7 +18,6 @@ if __name__ == '__main__':
     main_url = class_url.get_result_main_url(name_search=search, description=descriptions, regions=regions,
                                              exp=experience, salary=salary, exclude_words=del_words)
 
-    # Создание класса для поиска вакансий и их получения
     vacations = ScrappingHH(main_url, show_search=True)
     result_info_vacations = time_decorator(vacations.get_vacations)(quantity=10)
 
