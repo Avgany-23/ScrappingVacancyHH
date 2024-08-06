@@ -16,18 +16,16 @@ def decorator_try_open_main_page(count: int = 10) -> Callable[[Callable], Callab
      Возвращает функцию base_decorator"""
 
     def base_decorator(func: Callable[..., Any]) -> Callable[..., Any]:
-        @wraps(func)  # Для сохранения атрибутов функции func
+        @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             counter = 1
-            # Попытка вызвать функцию (func) count раз
             while counter <= count:
                 try:
                     result_func = func(*args, **kwargs)
                     break
                 except:
                     counter += 1
-            # Если ошибка произошла count раз, то вызов исключения  
-            if counter - 1 == count:
+            if counter - 1 == count:  # Если ошибка произошла count раз, то вызов исключения  
                 raise Service('Ошибка с загрузкой главной страницы со списком вакансий')
             return result_func
 
@@ -45,12 +43,12 @@ class ScrappingHH:
         """Инициализатор. Подключается к движку и настраивает его
         Ничего не принимает, возвращает None"""
 
-        self.path = ChromeDriverManager().install()                         # Установка и получение пути движка
-        self.browser_service = Service(executable_path=self.path)           # Загрузка движка в браузер по пути path
-        self.options = ChromeOptions()                                      # Экземпляр класса настройки движка
-        self.options.add_experimental_option("detach", True)                # Не закрывать браузер во время работы
+        self.path = ChromeDriverManager().install()                        
+        self.browser_service = Service(executable_path=self.path)          
+        self.options = ChromeOptions()                                     
+        self.options.add_experimental_option("detach", True)                
         if not show_search:
-            self.options.add_argument('--headless')                         # Отображение браузера
+            self.options.add_argument('--headless')                         
         self.main_url = main_url
 
     def replace_main_url(self, new_url: str) -> str:
@@ -77,14 +75,14 @@ class ScrappingHH:
         main_url - URL-ссылка, с которой возьмутся ссылки на вакансии
         Функция вернёт список из строк URL-адресов вакансий"""
 
-        driver = Chrome(service=self.browser_service, options=self.options)  # Создание браузера
-        driver.get(self.main_url)                                   # Переход на страницу для поиска URL вакансий
-        urls = []                                                   # Список полученных URL-адресов
+        driver = Chrome(service=self.browser_service, options=self.options)  
+        driver.get(self.main_url)                                   
+        urls = []                                                   
         path_HTML = '//h2[@class="bloko-header-section-2"]/span/a'  # Путь HTML к ссылке вакансии
         url_vacancy = driver.find_elements(By.XPATH, path_HTML)     # Получение объектов
-        for el in url_vacancy:                                      # Итерация по полученным объектам
+        for el in url_vacancy:                                     
             urls.append(el.get_attribute('href'))                   # Изъятие ссылки из свойства href тега <a>
-        driver.quit()                                               # Закрытие браузера
+        driver.quit()                                               
         return urls
 
     @staticmethod
@@ -121,7 +119,7 @@ class ScrappingHH:
 
         log_start(quantity)
         urls = self.get_url()   # Получение ссылок вакансий со страницы по ссылке main_url
-        if not urls:            # Если ничего нашлось на первой странице, то выход из функции
+        if not urls:          
             log_non_url()
             return []
 
@@ -142,12 +140,12 @@ class ScrappingHH:
 
             for url in urls:                    # Итерация по ссылкам с вакансиями
                 try:                            # Если случится любая ошибка при поиске информации, то пропуск итерации
-                    driver.get(url)                            # Переход браузера по ссылке (url) с вакансией
+                    driver.get(url)                            
                     count_check_vacations += 1                 # Просмотр вакансии увеличивается на 1
                     result_info = self.vacations_data(driver)  # Получение информации о вакансии
                 except BaseException as error:
                     log_error_url_search(url, error)
-                    driver = Chrome(service=self.browser_service, options=self.options)  # Создание браузера
+                    driver = Chrome(service=self.browser_service, options=self.options) 
                     continue
 
                 result_info_vacations.append({'url_address': url, 'title': result_info[0],
@@ -156,7 +154,7 @@ class ScrappingHH:
                 count += 1                      # Увеличение счетчика найденных вакансий
                 log_current_vacations(count)
                 if count == quantity: break     # Если нашлось нужное кол-во вакансии, то поиск прекращается
-            driver.quit()                       # Закрытие браузера
+            driver.quit()                       
 
         log_end_search(count, count_check_vacations)
         return [result_info_vacations, count, count_check_vacations, quantity]
