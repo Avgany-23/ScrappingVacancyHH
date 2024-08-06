@@ -11,9 +11,7 @@ import re
 
 def decorator_try_open_main_page(count: int = 10) -> Callable[[Callable], Callable]:
     """Функция декоратор. Дополняет функцию (func), если в ней произошла любая ошибка,
-     то попытается вызвать её ещё столько раз, сколько указано в параметр count,
-     count - количество раз вызова функции (int)
-     Возвращает функцию base_decorator"""
+     то попытается вызвать её ещё столько раз, сколько указано в параметр count"""
 
     def base_decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
@@ -35,14 +33,10 @@ def decorator_try_open_main_page(count: int = 10) -> Callable[[Callable], Callab
 
 
 class ScrappingHH:
-    """Класс, позволяющий подключиться к HH и отбирать вакансии с определёнными параметрами
-    при создании экземпляра класса происходит установка и настройка движка для браузера Chrome.
-    Для работы класса должен быть скачан браузер Chrome."""
+    """Класс, позволяющий подключиться к HH и отбирать вакансии с определёнными параметрами"""
 
     def __init__(self, main_url, show_search=True) -> None:  # Подключение к движку
-        """Инициализатор. Подключается к движку и настраивает его
-        Ничего не принимает, возвращает None"""
-
+        """Инициализатор. Подключается к движку и настраивает его"""
         self.path = ChromeDriverManager().install()                        
         self.browser_service = Service(executable_path=self.path)          
         self.options = ChromeOptions()                                     
@@ -52,18 +46,12 @@ class ScrappingHH:
         self.main_url = main_url
 
     def replace_main_url(self, new_url: str) -> str:
-        """Функция для изменения главной ссылки с вакансиями
-        new-url - новая ссылка (str).
-        Функция вернёт новую ссылку (str)"""
-
+        """Функция для изменения главной ссылки с вакансиями"""
         self.main_url = new_url
         return self.main_url
 
     def main_url_add_next_page(self, number_page: int, url: str) -> None:
-        """Функция для изменения/добавления номера страницы ссылке
-        number_page - номер страницы (int), url - ссылка, к которой добавится изменение.
-        Функция вернёт None"""
-
+        """Функция для изменения/добавления номера страницы ссылке"""
         # Если page нет в ссылке, то добавляет
         if not re.findall(r'&page=\d+', url):  self.replace_main_url(url + f'page={number_page}')
         # Если page есть в ссылке, то изменяется
@@ -71,10 +59,7 @@ class ScrappingHH:
 
     @decorator_try_open_main_page()  # За счет декоратора главная страница в браузере будет пытаться открыться 10 раз
     def get_url(self) -> list[str]:
-        """Функция достаёт все ссылки вакансий на странице
-        main_url - URL-ссылка, с которой возьмутся ссылки на вакансии
-        Функция вернёт список из строк URL-адресов вакансий"""
-
+        """Функция достаёт все ссылки вакансий на странице по ссылке self.main_url"""
         driver = Chrome(service=self.browser_service, options=self.options)  
         driver.get(self.main_url)                                   
         urls = []                                                   
@@ -87,10 +72,7 @@ class ScrappingHH:
 
     @staticmethod
     def vacations_data(driver: object) -> tuple[Any, str | Any, Any, Any, Any]:
-        """Функция предназначена для работы внутри класса. Достает необходимые параметры с вакансии
-        driver - объект браузера, через который происходит поиск,
-        возвращает кортеж строк с найденными параметров вакансий"""
-
+        """Функция достает необходимые параметры с вакансии"""
         # HTML пути до собираемых данных с Вакансий
         path_html_title = '//div[@class="vacancy-title"]/h1'
         path_html_company = '//div[@class="vacancy-company-details"]'
@@ -110,13 +92,7 @@ class ScrappingHH:
                 vacancy_area.text.split(', ')[0], vacancy_experience.text)
 
     def get_vacations(self, quantity: int) -> list[Any] | list[list[dict[str, str | Any]] | int]:
-        """Функция проходится по полученным ссылкам и отбирает нужные вакансии (get_url(main_urls),
-        в которых присутствуют ключевые слова
-        quantity - количество отбираемых вакансий (num)
-        key_words - список ключевых слов (список со строчками)
-        Возвращает пустой список, если ничего не найдётся или кортеж,
-        состоящий из кортежа найденных вакансий и параметров поиска"""
-
+        """Функция проходится по ссылкам с вакансиями и достаёт из них данные из vacations_data()"""
         log_start(quantity)
         urls = self.get_url()   # Получение ссылок вакансий со страницы по ссылке main_url
         if not urls:          
@@ -165,18 +141,15 @@ class HHurl:
 
     def __init__(self):
         """Инициализатор класса. Создает start_url (str) - ссылка на поиск HH вакансий без каких-либо фильтров."""
-
         self.start_url = ('https://hh.ru/search/vacancy?L_save_area=true&items_on_page=100&hhtmFrom'
                           '=vacancy_search_filter&search_field=name&search_field=company_name&search_field'
                           '=description&enable_snippets=true&text=&')
 
     def get_result_main_url(self, **kwargs) -> str:
-        """Функция создаёт результирующую ссылку с определёнными фильтрами в переменной kwargs.
-        Именованные аргументы key kwargs: name_search, description, regions, exp, salary, exclude_words.
-        Возвращает итоговую ссылку (str)"""
-
+        """Функция создаёт результирующую ссылку с определёнными фильтрами в переменной kwargs"""
         if 'name_search' not in kwargs.keys():
             raise KeyError('Для поиска вакансий указан обязательный параметр name_search')
+            
         keys = kwargs.keys()
 
         # --- Получение параметров ссылки ---
@@ -198,21 +171,14 @@ class HHurl:
 
     @staticmethod
     def get_params(name_search: list[..., str], description: list[..., str] | str) -> str:
-        """Статическая функция для составления заголовков имени поиска вакансия и ключевых слов.
-        Принимает name_search - список имён поиска (список строк),
-        description - список ключевых слов (список строк).
-        Возвращает готовые заголовки (str)."""
-
+        """Функция для составления заголовков имени поиска вакансия и ключевых слов"""
         name = 'text=Name%3A%28' + '+or+'.join(name_search) + '%29' if name_search else ''
         descript = '+and+DESCRIPTION%3A%28' + '+or+'.join(description) + '%29&' if description else ''
         return name + (descript or '&')
 
     @staticmethod
     def get_region(regions: list[..., str] | str) -> str:
-        """Статическая функция для составления заголовков регионов поиска вакансий.
-        Принимает regions - список городов (список строк).
-        Возвращает готовые заголовки (str)."""
-
+        """Функция для составления заголовков регионов поиска вакансий"""
         region = {'Moscow': '1', 'St.Petersburg': '2', 'Ekaterinburg': '3'}
         if regions:
             return 'area=' + 'area='.join(f'{region[key]}&' for key in regions)
@@ -221,10 +187,7 @@ class HHurl:
 
     @staticmethod
     def get_experience(exp: str) -> str:
-        """Статическая функция для составления заголовков опыта для поиска вакансий.
-        Принимает exp - опыт (строка).
-        Возвращает готовые заголовки (str)."""
-
+        """Функция для составления заголовков опыта для поиска вакансий"""
         if exp not in ('1-3', '6', '0', ''):
             raise KeyError('Неправильно указан опыт к вакансии')
         experience = {'0': 'noExperience&', '1-3': 'between1And3&', '6': 'moreThan6&'}
@@ -234,10 +197,7 @@ class HHurl:
 
     @staticmethod
     def get_salary(salary: str) -> str:
-        """Статическая функция для составления заголовков заработной платы вакансий.
-        Принимает salary - список заработной платы (строка).
-        Возвращает готовые заголовки (str)."""
-
+        """Функция для составления заголовков заработной платы вакансий"""
         if not salary:
             return ''
         if not salary.isdigit() or salary[0] == '0':
@@ -246,10 +206,7 @@ class HHurl:
 
     @staticmethod
     def get_exclude_words(exclude_words: list[str] | str) -> str:
-        """Статическая функция для составления заголовков исключающих слов вакансий.
-        Принимает exclude_words - список исключающих слов (список строк).
-        Возвращает готовые заголовки (str)."""
-
+        """Функция для составления заголовков исключающих слов вакансий"""
         if not exclude_words:
             return ''
 
